@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { LibroEntity } from '../libro/libro.entity';
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()

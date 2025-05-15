@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BibliotecaModule } from './biblioteca/biblioteca.module';
+import { LibroModule } from './libro/libro.module';
 import { BibliotecaModule } from './biblioteca/biblioteca.module';
 
 @Module({
@@ -21,6 +22,7 @@ import { BibliotecaModule } from './biblioteca/biblioteca.module';
       keepConnectionAlive: true
     }),
     BibliotecaModule,
+    LibroModule,
   ],
   controllers: [AppController],
   providers: [AppService],
