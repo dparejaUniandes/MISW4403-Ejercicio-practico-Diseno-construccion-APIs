@@ -1,6 +1,7 @@
 import { CallHandler, ExecutionContext, HttpException, HttpStatus, Injectable, NestInterceptor } from '@nestjs/common';
 import { catchError, Observable } from 'rxjs';
 import { BusinessError } from '../errors/business-errors';
+import { TypeORMError } from 'typeorm';
 
 @Injectable()
 export class BusinessErrorsInterceptor implements NestInterceptor {
@@ -11,7 +12,7 @@ export class BusinessErrorsInterceptor implements NestInterceptor {
              throw new HttpException(error.message, HttpStatus.NOT_FOUND);
          else if (error.type === BusinessError.PRECONDITION_FAILED)
              throw new HttpException(error.message, HttpStatus.PRECONDITION_FAILED);
-         else if (error.type === BusinessError.BAD_REQUEST)
+         else if (error.type === BusinessError.BAD_REQUEST || error instanceof TypeORMError)
              throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
          else
              throw error;
