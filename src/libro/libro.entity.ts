@@ -17,7 +17,7 @@ export class LibroEntity {
     fecha_publicacion: string;
     
     @Column()
-    ISBN: string;
+    isbn: string;
 
     @ManyToMany(() => BibliotecaEntity, biblioteca => biblioteca.libros)
     @JoinTable()

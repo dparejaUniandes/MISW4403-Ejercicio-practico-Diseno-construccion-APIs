@@ -1,4 +1,12 @@
 import { Module } from '@nestjs/common';
+import { BibliotecaService } from './biblioteca.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { BibliotecaEntity } from './biblioteca.entity';
+import { BibliotecaController } from './biblioteca.controller';
 
-@Module({})
+@Module({
+  providers: [BibliotecaService],
+  imports: [TypeOrmModule.forFeature([BibliotecaEntity])],
+  controllers: [BibliotecaController],
+})
 export class BibliotecaModule {}

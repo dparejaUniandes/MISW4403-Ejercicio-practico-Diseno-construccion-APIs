@@ -5,7 +5,8 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BibliotecaModule } from './biblioteca/biblioteca.module';
 import { LibroModule } from './libro/libro.module';
-import { BibliotecaModule } from './biblioteca/biblioteca.module';
+import { BibliotecaEntity } from './biblioteca/biblioteca.entity';
+import { LibroEntity } from './libro/libro.entity';
 
 @Module({
   imports: [
@@ -15,8 +16,8 @@ import { BibliotecaModule } from './biblioteca/biblioteca.module';
       port: 5432,
       username: 'postgres',
       password: 'postgres',
-      database: 'museum',
-      entities: [],
+      database: 'gestion_bibliotecas',
+      entities: [BibliotecaEntity, LibroEntity],
       dropSchema: true,
       synchronize: true,
       keepConnectionAlive: true
