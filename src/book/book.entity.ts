@@ -20,6 +20,5 @@ export class BookEntity {
     isbn: string;
 
     @ManyToMany(() => LibraryEntity, library => library.books)
-    @JoinTable()
     libraries: LibraryEntity[];
 }
