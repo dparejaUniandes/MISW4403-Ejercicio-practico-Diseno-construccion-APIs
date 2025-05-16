@@ -1,26 +1,26 @@
-import {IsNotEmpty, IsString, Min, Max, IsInt} from 'class-validator';
-export class BibliotecaDto {
+import {IsString, Min, Max, IsInt, IsOptional} from 'class-validator';
+export class ActualizarBibliotecaDto {
     @IsString({ message: 'El nombre debe ser un texto' })
-    @IsNotEmpty({ message: 'El nombre no puede estar vacío' })
+    @IsOptional()
     readonly nombre: string;
     
     @IsString({ message: 'La dirección debe ser un texto' })
-    @IsNotEmpty({ message: 'La dirección no puede estar vacía' })
+    @IsOptional()
     readonly direccion: string;
     
     @IsString({ message: 'La ciudad debe ser un texto' })
-    @IsNotEmpty({ message: 'La ciudad no puede estar vacía' })
+    @IsOptional()
     readonly ciudad: string;
     
     @IsInt({ message: 'La hora de apertura debe ser un número' })
     @Min(1)
     @Max(24)
-    @IsNotEmpty({ message: 'La hora de apertura no puede estar vacía' })
+    @IsOptional()
     readonly hora_apertura: number;
 
     @IsInt({ message: 'La hora de cierre debe ser un número' })
     @Min(1)
     @Max(24)
-    @IsNotEmpty({ message: 'La hora de cierre no puede estar vacía' })
+    @IsOptional()
     readonly hora_cierre: number;
 }
