@@ -24,6 +24,12 @@ export class BookService {
     }
 
     async create(book: BookEntity): Promise<BookEntity> {
+        if (!this.isValidDate(book.publication_date))
+            throw new BusinessLogicException("The publication date is not in the YYYY-MM-DD format", BusinessError.BAD_REQUEST);
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().slice(0, 10);
+        if (formattedDate < book.publication_date)
+            throw new BusinessLogicException("The publication date is greater than the current date", BusinessError.PRECONDITION_FAILED);
         return await this.bookRepository.save(book);
     }
 
@@ -42,4 +48,8 @@ export class BookService {
      
         await this.bookRepository.remove(book);
     }
+
+    isValidDate(dateString: string): boolean {
+        return /^\d{4}-\d{2}-\d{2}$/.test(dateString);
+}
 } 

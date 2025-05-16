@@ -32,15 +32,15 @@ export class LibraryService {
     async update(id: string, library: LibraryEntity): Promise<LibraryEntity> {
         const persistedLibrary: LibraryEntity = await this.libraryRepository.findOne({where:{id}});
         if (!persistedLibrary)
-            throw new BusinessLogicException("The library with the given identifier was not found", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("The library with the given identifier was not found", BusinessError.PRECONDITION_FAILED);
 
         if (!(library.opening_time && library.closing_time && library.opening_time < library.closing_time)){
             if (library.opening_time && library.closing_time && library.opening_time >= library.closing_time)
-                throw new BusinessLogicException(`The opening time ${library.opening_time} cannot be later than the closing time ${library.closing_time}`, BusinessError.BAD_REQUEST);
+                throw new BusinessLogicException(`The opening time ${library.opening_time} cannot be later than the closing time ${library.closing_time}`, BusinessError.PRECONDITION_FAILED);
             else if (library.opening_time  && library.opening_time >= persistedLibrary.closing_time)
-                throw new BusinessLogicException(`The opening time ${library.opening_time} cannot be later than the closing time ${persistedLibrary.closing_time}`, BusinessError.BAD_REQUEST);
+                throw new BusinessLogicException(`The opening time ${library.opening_time} cannot be later than the closing time ${persistedLibrary.closing_time}`, BusinessError.PRECONDITION_FAILED);
             else if (library.closing_time  && library.closing_time <= persistedLibrary.opening_time)
-                throw new BusinessLogicException(`The opening time ${persistedLibrary.opening_time} cannot be later than the closing time ${library.closing_time}`, BusinessError.BAD_REQUEST);
+                throw new BusinessLogicException(`The opening time ${persistedLibrary.opening_time} cannot be later than the closing time ${library.closing_time}`, BusinessError.PRECONDITION_FAILED);
         }
         
         return await this.libraryRepository.save({...persistedLibrary, ...library});
