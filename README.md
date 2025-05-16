@@ -1,5 +1,14 @@
 # MISW4403-Ejercicio-practico-Diseno-construccion-APIs
-Esté repositorio es creado con el fin de realizar el ejercicio práctico propuesto en la semana siete del curso de diseño y construcción de APIs Rest
+Esté repositorio es creado con el fin de realizar el ejercicio práctico propuesto en la semana siete del curso de diseño y construcción de APIs Rest, el trabajo realizado en este repositorio toma como base lo explicado en el tutorial de persistencia, a nivel de código también se tiene en cuenta el repositorio de [Persistencia](https://github.com/MISW4403-Diseno-y-construccion-de-APIs/MISW4403_202214_Persistencia)
+
+Antes de ejecutar la aplicación se deben descargar todas las dependencias, se puede utilizar `npm i`
+
+La aplicación se ejecuta por medio del siguiente comando:
+> npm run start:dev
+
+La versión de Node utilizada fue la `v20.11.1` como se puede ver en la versión verde a continuación:
+<img width="737" alt="image" src="https://github.com/user-attachments/assets/97f2461d-a989-4897-98e5-fb4479b5023b" />
+
 
 # Documentación de la API
 
@@ -88,8 +97,7 @@ Esté repositorio es creado con el fin de realizar el ejercicio práctico propue
     "title": "The Great Gatsby",
     "author": "F. Scott Fitzgerald",
     "publication_date": "1925",
-    "isbn": "978-0743273565",
-    "libraries": []
+    "isbn": "978-0743273565"
 }
 ```
 
@@ -122,8 +130,7 @@ Esté repositorio es creado con el fin de realizar el ejercicio práctico propue
     "title": "The Great Gatsby",
     "author": "F. Scott Fitzgerald",
     "publication_date": "1925",
-    "isbn": "978-0743273565",
-    "libraries": []
+    "isbn": "978-0743273565"
 }
 ```
 
@@ -244,8 +251,7 @@ Esté repositorio es creado con el fin de realizar el ejercicio práctico propue
     "address": "123 Main St",
     "city": "New York",
     "opening_time": 9,
-    "closing_time": 18,
-    "books": []
+    "closing_time": 18
 }
 ```
 
@@ -280,8 +286,7 @@ Esté repositorio es creado con el fin de realizar el ejercicio práctico propue
     "address": "123 Main St",
     "city": "New York",
     "opening_time": 9,
-    "closing_time": 18,
-    "books": []
+    "closing_time": 18
 }
 ```
 
