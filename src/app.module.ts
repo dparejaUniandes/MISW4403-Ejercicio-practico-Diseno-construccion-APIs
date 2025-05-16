@@ -7,6 +7,7 @@ import { LibraryModule } from './library/library.module';
 import { BookModule } from './book/book.module';
 import { LibraryEntity } from './library/library.entity';
 import { BookEntity } from './book/book.entity';
+import { LibraryBookModule } from './library-book/library-book.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { BookEntity } from './book/book.entity';
     }),
     LibraryModule,
     BookModule,
+    LibraryBookModule,
   ],
   controllers: [AppController],
   providers: [AppService],
