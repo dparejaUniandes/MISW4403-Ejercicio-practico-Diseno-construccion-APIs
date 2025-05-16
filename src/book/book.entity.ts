@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { BibliotecaEntity } from '../biblioteca/biblioteca.entity';
+import { BibliotecaEntity } from '../library/library.entity';
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()

@@ -1,10 +1,10 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
-import { BibliotecaService } from './biblioteca.service';
+import { BibliotecaService } from './library.service';
 import { BusinessErrorsInterceptor } from 'src/shared/interceptors/business-errors.interceptor';
 import { plainToInstance } from 'class-transformer';
-import { BibliotecaEntity } from './biblioteca.entity';
-import { CrearBibliotecaDto } from './crear-biblioteca.dto';
-import { ActualizarBibliotecaDto } from './actualizar-biblioteca.dto';
+import { BibliotecaEntity } from './library.entity';
+import { CrearBibliotecaDto } from './create-library.dto';
+import { ActualizarBibliotecaDto } from './update-library.dto';
 
 @Controller('bibliotecas')
 @UseInterceptors(BusinessErrorsInterceptor)

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { BibliotecaEntity } from './biblioteca.entity';
+import { BibliotecaEntity } from './library.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';

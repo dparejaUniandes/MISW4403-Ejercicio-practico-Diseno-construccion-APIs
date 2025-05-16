@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { LibroService } from './libro.service';
+import { LibroService } from './book.service';
 
 @Module({
   providers: [LibroService]

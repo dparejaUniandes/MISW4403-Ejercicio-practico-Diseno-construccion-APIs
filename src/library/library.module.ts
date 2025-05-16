@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { BibliotecaService } from './biblioteca.service';
+import { BibliotecaService } from './library.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { BibliotecaEntity } from './biblioteca.entity';
-import { BibliotecaController } from './biblioteca.controller';
+import { BibliotecaEntity } from './library.entity';
+import { BibliotecaController } from './library.controller';
 
 @Module({
   providers: [BibliotecaService],

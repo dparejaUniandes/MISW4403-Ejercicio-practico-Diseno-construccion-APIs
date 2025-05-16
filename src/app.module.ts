@@ -3,10 +3,10 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { BibliotecaModule } from './biblioteca/biblioteca.module';
-import { LibroModule } from './libro/libro.module';
-import { BibliotecaEntity } from './biblioteca/biblioteca.entity';
-import { LibroEntity } from './libro/libro.entity';
+import { BibliotecaModule } from './library/library.module';
+import { LibroModule } from './book/book.module';
+import { BibliotecaEntity } from './library/library.entity';
+import { LibroEntity } from './book/book.entity';
 
 @Module({
   imports: [
