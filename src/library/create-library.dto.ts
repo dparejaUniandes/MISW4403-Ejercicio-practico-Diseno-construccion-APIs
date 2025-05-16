@@ -1,26 +1,26 @@
 import {IsNotEmpty, IsString, Min, Max, IsInt} from 'class-validator';
-export class CrearBibliotecaDto {
-    @IsString({ message: 'El nombre debe ser un texto' })
-    @IsNotEmpty({ message: 'El nombre no puede estar vacío' })
-    readonly nombre: string;
+export class CreateLibraryDto {
+    @IsString({ message: 'The name must be a text' })
+    @IsNotEmpty({ message: 'The name cannot be empty' })
+    readonly name: string;
     
-    @IsString({ message: 'La dirección debe ser un texto' })
-    @IsNotEmpty({ message: 'La dirección no puede estar vacía' })
-    readonly direccion: string;
+    @IsString({ message: 'The address must be a text' })
+    @IsNotEmpty({ message: 'The address cannot be empty' })
+    readonly address: string;
     
-    @IsString({ message: 'La ciudad debe ser un texto' })
-    @IsNotEmpty({ message: 'La ciudad no puede estar vacía' })
-    readonly ciudad: string;
+    @IsString({ message: 'The city must be a text' })
+    @IsNotEmpty({ message: 'The city cannot be empty' })
+    readonly city: string;
     
-    @IsInt({ message: 'La hora de apertura debe ser un número' })
+    @IsInt({ message: 'The opening time must be a number' })
     @Min(1)
     @Max(24)
-    @IsNotEmpty({ message: 'La hora de apertura no puede estar vacía' })
-    readonly hora_apertura: number;
+    @IsNotEmpty({ message: 'The opening time cannot be empty' })
+    readonly opening_time: number;
 
-    @IsInt({ message: 'La hora de cierre debe ser un número' })
+    @IsInt({ message: 'The closing time must be a number' })
     @Min(1)
     @Max(24)
-    @IsNotEmpty({ message: 'La hora de cierre no puede estar vacía' })
-    readonly hora_cierre: number;
+    @IsNotEmpty({ message: 'The closing time cannot be empty' })
+    readonly closing_time: number;
 }

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { LibroService } from './book.service';
+import { BookService } from './book.service';
 
 @Module({
-  providers: [LibroService]
+  providers: [BookService]
 })
-export class LibroModule {}
+export class BookModule {}

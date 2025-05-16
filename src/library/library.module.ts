@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { BibliotecaService } from './library.service';
+import { LibraryService } from './library.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { BibliotecaEntity } from './library.entity';
-import { BibliotecaController } from './library.controller';
+import { LibraryEntity } from './library.entity';
+import { LibraryController } from './library.controller';
 
 @Module({
-  providers: [BibliotecaService],
-  imports: [TypeOrmModule.forFeature([BibliotecaEntity])],
-  controllers: [BibliotecaController],
+  providers: [LibraryService],
+  imports: [TypeOrmModule.forFeature([LibraryEntity])],
+  controllers: [LibraryController],
 })
-export class BibliotecaModule {}
+export class LibraryModule {}

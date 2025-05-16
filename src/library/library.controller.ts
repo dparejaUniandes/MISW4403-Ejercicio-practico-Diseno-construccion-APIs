@@ -1,42 +1,42 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
-import { BibliotecaService } from './library.service';
+import { LibraryService } from './library.service';
 import { BusinessErrorsInterceptor } from 'src/shared/interceptors/business-errors.interceptor';
 import { plainToInstance } from 'class-transformer';
-import { BibliotecaEntity } from './library.entity';
-import { CrearBibliotecaDto } from './create-library.dto';
-import { ActualizarBibliotecaDto } from './update-library.dto';
+import { LibraryEntity } from './library.entity';
+import { CreateLibraryDto } from './create-library.dto';
+import { UpdateLibraryDto } from './update-library.dto';
 
-@Controller('bibliotecas')
+@Controller('libraries')
 @UseInterceptors(BusinessErrorsInterceptor)
-export class BibliotecaController {
-    constructor(private readonly bibliotecaService: BibliotecaService) {}
+export class LibraryController {
+    constructor(private readonly libraryService: LibraryService) {}
     
-    @Get()
+     @Get()
     async findAll() {
-        return await this.bibliotecaService.findAll();
+        return await this.libraryService.findAll();
     }
 
-    @Get(':bibliotecaId')
-    async findOne(@Param('bibliotecaId') bibliotecaId: string) {
-        return await this.bibliotecaService.findOne(bibliotecaId);
+    @Get(':libraryId')
+    async findOne(@Param('libraryId') libraryId: string) {
+        return await this.libraryService.findOne(libraryId);
     }
 
     @Post()
-    async create(@Body() bibliotecaDto: CrearBibliotecaDto) {
-        const biblioteca: BibliotecaEntity = plainToInstance(BibliotecaEntity, bibliotecaDto);
-        return await this.bibliotecaService.create(biblioteca);
+    async create(@Body() libraryDto: CreateLibraryDto) {
+        const library: LibraryEntity = plainToInstance(LibraryEntity, libraryDto);
+        return await this.libraryService.create(library);
     }
 
-    @Put(':bibliotecaId')
-    async update(@Param('bibliotecaId') bibliotecaId: string, @Body() bibliotecaDto: ActualizarBibliotecaDto) {
-        const biblioteca: BibliotecaEntity = plainToInstance(BibliotecaEntity, bibliotecaDto);
-        return await this.bibliotecaService.update(bibliotecaId, biblioteca);
+    @Put(':libraryId')
+    async update(@Param('libraryId') libraryId: string, @Body() libraryDto: UpdateLibraryDto) {
+        const library: LibraryEntity = plainToInstance(LibraryEntity, libraryDto);
+        return await this.libraryService.update(libraryId, library);
     }
 
-    @Delete(':bibliotecaId')
+    @Delete(':libraryId')
     @HttpCode(204)
-    async delete(@Param('bibliotecaId') bibliotecaId: string) {
-        return await this.bibliotecaService.delete(bibliotecaId);
+    async delete(@Param('libraryId') libraryId: string) {
+        return await this.libraryService.delete(libraryId);
     }
 
 }

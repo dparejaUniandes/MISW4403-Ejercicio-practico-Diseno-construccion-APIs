@@ -1,26 +1,26 @@
 import {IsString, Min, Max, IsInt, IsOptional} from 'class-validator';
-export class ActualizarBibliotecaDto {
-    @IsString({ message: 'El nombre debe ser un texto' })
+export class UpdateLibraryDto {
+    @IsString({ message: 'The name must be a text' })
     @IsOptional()
-    readonly nombre: string;
+    readonly name: string;
     
-    @IsString({ message: 'La dirección debe ser un texto' })
+    @IsString({ message: 'The address must be a text' })
     @IsOptional()
-    readonly direccion: string;
+    readonly address: string;
     
-    @IsString({ message: 'La ciudad debe ser un texto' })
+    @IsString({ message: 'The city must be a text' })
     @IsOptional()
-    readonly ciudad: string;
+    readonly city: string;
     
-    @IsInt({ message: 'La hora de apertura debe ser un número' })
+    @IsInt({ message: 'The opening time must be a number' })
     @Min(1)
     @Max(24)
     @IsOptional()
-    readonly hora_apertura: number;
+    readonly opening_time: number;
 
-    @IsInt({ message: 'La hora de cierre debe ser un número' })
+    @IsInt({ message: 'The closing time must be a number' })
     @Min(1)
     @Max(24)
     @IsOptional()
-    readonly hora_cierre: number;
+    readonly closing_time: number;
 }

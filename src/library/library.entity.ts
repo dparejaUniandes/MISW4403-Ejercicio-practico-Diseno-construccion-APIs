@@ -1,28 +1,28 @@
 /* eslint-disable */
-import { LibroEntity } from '../book/book.entity';
+import { BookEntity } from '../book/book.entity';
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class BibliotecaEntity {
+export class LibraryEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
     @Column()
-    nombre: string;
+    name: string;
     
     @Column()
-    direccion: string;
+    address: string;
     
     @Column()
-    ciudad: string;
+    city: string;
     
     @Column()
-    hora_apertura: number;
+    opening_time: number;
 
     @Column()
-    hora_cierre: number;
+    closing_time: number;
 
-    @ManyToMany(() => LibroEntity, libro => libro.bibliotecas)
+    @ManyToMany(() => BookEntity, book => book.libraries)
     @JoinTable()
-    libros: LibroEntity[];
+    books: BookEntity[];
 }
