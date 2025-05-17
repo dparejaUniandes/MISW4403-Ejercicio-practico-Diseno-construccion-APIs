@@ -1,0 +1,3303 @@
+{
+	"info": {
+		"_postman_id": "5fb5a77a-007f-4bd7-8ae2-4e8395606b5a",
+		"name": "Library-Book",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15124328"
+	},
+	"item": [
+		{
+			"name": "Casos de error",
+			"item": [
+				{
+					"name": "create book (is not a test)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponse = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"book_id\",jsonResponse.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"La fraja amarilla\",\n    \"author\": \"William Ospina\",\n    \"publication_date\": \"1997-05-01\",\n    \"isbn\": \"9585820749\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/books",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create library (is not a test)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponse = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"library_id\",jsonResponse.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 17\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "associate book to library error 404 book not exists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The book with the given id was not found\");",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books/12ae706a-3730-40f1-820d-80077773de7a",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books",
+								"12ae706a-3730-40f1-820d-80077773de7a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find book from library error 404 book not exists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The book with the given id was not found\");",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books/12ae706a-3730-40f1-820d-80077773de7a",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books",
+								"12ae706a-3730-40f1-820d-80077773de7a"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "find book from library error 404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-e+H+g2RYQOFmQzHgVe8RirYshDw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:19:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given id was not found\"\n}"
+						},
+						{
+							"name": "find book from library success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "151"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"97-C3Hzri87UcA2RMuekPF8Vk5kfp8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:21:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"bc2c7998-e04a-42f9-bfb8-ad40c2dd3691\",\n    \"title\": \"La fraja amarilla\",\n    \"author\": \"William Ospina\",\n    \"publication_date\": \"1997-05-01\",\n    \"isbn\": \"9585820749\"\n}"
+						},
+						{
+							"name": "find book from library error 412",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "90"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5a-oneOhFdbty9m+4WdyO+QGz2UZwM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:22:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The book with the given id is not associated to the library\"\n}"
+						}
+					]
+				},
+				{
+					"name": "find book from library error 412 book is not associated with library",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 412\", function () {",
+									"   pm.response.to.have.status(412);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The book with the given id is not associated to the library\");",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books",
+								"{{book_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "find book from library error 404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-e+H+g2RYQOFmQzHgVe8RirYshDw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:19:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given id was not found\"\n}"
+						},
+						{
+							"name": "find book from library success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "151"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"97-C3Hzri87UcA2RMuekPF8Vk5kfp8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:21:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"bc2c7998-e04a-42f9-bfb8-ad40c2dd3691\",\n    \"title\": \"La fraja amarilla\",\n    \"author\": \"William Ospina\",\n    \"publication_date\": \"1997-05-01\",\n    \"isbn\": \"9585820749\"\n}"
+						},
+						{
+							"name": "find book from library error 412",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "90"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5a-oneOhFdbty9m+4WdyO+QGz2UZwM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:22:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The book with the given id is not associated to the library\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update books from library error 404 book not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The book with the given id was not found\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": \"23504e9d-7e2f-49fc-9d04-7b5ccb88ac21\",\n        \"title\": \"La fraja amarilla version 2\",\n        \"author\": \"William Ospina Buitrago\",\n        \"publication_date\": \"1997-05-01\",\n        \"isbn\": \"9585820749\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update books from library error 404",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    {\n        \"id\": \"{{book_id}}\",\n        \"title\": \"La fraja amarilla version 2\",\n        \"author\": \"William Ospina Buitrago\",\n        \"publication_date\": \"1997-05-01\",\n        \"isbn\": \"9585820749\"\n    }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-e+H+g2RYQOFmQzHgVe8RirYshDw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:20:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given id was not found\"\n}"
+						},
+						{
+							"name": "update books from library success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    {\n        \"id\": \"{{book_id}}\",\n        \"title\": \"La fraja amarilla version 2\",\n        \"author\": \"William Ospina Buitrago\",\n        \"publication_date\": \"1997-05-01\",\n        \"isbn\": \"9585820749\"\n    }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "348"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15c-qsKIUPlepc4Px4apwFXfaV9Nq3E\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:21:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"d182e389-3062-42eb-bf35-296318412cc2\",\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 17,\n    \"books\": [\n        {\n            \"id\": \"bc2c7998-e04a-42f9-bfb8-ad40c2dd3691\",\n            \"title\": \"La fraja amarilla version 2\",\n            \"author\": \"William Ospina Buitrago\",\n            \"publication_date\": \"1997-05-01\",\n            \"isbn\": \"9585820749\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "update books from library error 404 library not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The library with the given id was not found\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": \"{{book_id}}\",\n        \"title\": \"La fraja amarilla version 2\",\n        \"author\": \"William Ospina Buitrago\",\n        \"publication_date\": \"1997-05-01\",\n        \"isbn\": \"9585820749\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/23504e9d-7e2f-49fc-9d04-7b5ccb88ac22/books",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"23504e9d-7e2f-49fc-9d04-7b5ccb88ac22",
+								"books"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update books from library error 404",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    {\n        \"id\": \"{{book_id}}\",\n        \"title\": \"La fraja amarilla version 2\",\n        \"author\": \"William Ospina Buitrago\",\n        \"publication_date\": \"1997-05-01\",\n        \"isbn\": \"9585820749\"\n    }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-e+H+g2RYQOFmQzHgVe8RirYshDw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:20:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given id was not found\"\n}"
+						},
+						{
+							"name": "update books from library success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    {\n        \"id\": \"{{book_id}}\",\n        \"title\": \"La fraja amarilla version 2\",\n        \"author\": \"William Ospina Buitrago\",\n        \"publication_date\": \"1997-05-01\",\n        \"isbn\": \"9585820749\"\n    }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "348"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15c-qsKIUPlepc4Px4apwFXfaV9Nq3E\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:21:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"d182e389-3062-42eb-bf35-296318412cc2\",\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 17,\n    \"books\": [\n        {\n            \"id\": \"bc2c7998-e04a-42f9-bfb8-ad40c2dd3691\",\n            \"title\": \"La fraja amarilla version 2\",\n            \"author\": \"William Ospina Buitrago\",\n            \"publication_date\": \"1997-05-01\",\n            \"isbn\": \"9585820749\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "delete book from library error 404 book not exists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The book with the given id was not found\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books/23504e9d-7e2f-49fc-9d04-7b5ccb88ac21",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books",
+								"23504e9d-7e2f-49fc-9d04-7b5ccb88ac21"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete book from library error 404",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-e+H+g2RYQOFmQzHgVe8RirYshDw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:20:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given id was not found\"\n}"
+						},
+						{
+							"name": "delete book from library success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:21:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "delete book from library error 412",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "90"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5a-oneOhFdbty9m+4WdyO+QGz2UZwM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:22:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The book with the given id is not associated to the library\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete book from library error 404 library not exists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The library with the given id was not found\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/523ba20b-da10-4869-8e15-77dd722fdcea/books/{{book_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"523ba20b-da10-4869-8e15-77dd722fdcea",
+								"books",
+								"{{book_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete book from library error 404",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-e+H+g2RYQOFmQzHgVe8RirYshDw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:20:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given id was not found\"\n}"
+						},
+						{
+							"name": "delete book from library success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:21:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "delete book from library error 412",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "90"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5a-oneOhFdbty9m+4WdyO+QGz2UZwM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:22:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The book with the given id is not associated to the library\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete book from library error 412 book is not associated with a library",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 412\", function () {",
+									"   pm.response.to.have.status(412);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The book with the given id is not associated to the library\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books",
+								"{{book_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete book from library error 404",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-e+H+g2RYQOFmQzHgVe8RirYshDw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:20:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given id was not found\"\n}"
+						},
+						{
+							"name": "delete book from library success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:21:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "delete book from library error 412",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "90"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5a-oneOhFdbty9m+4WdyO+QGz2UZwM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:22:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The book with the given id is not associated to the library\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Casos de éxito",
+			"item": [
+				{
+					"name": "create book (is not a test)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponse = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"book_id\",jsonResponse.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"La fraja amarilla\",\n    \"author\": \"William Ospina\",\n    \"publication_date\": \"1997-05-01\",\n    \"isbn\": \"9585820749\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/books",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create library (is not a test)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponse = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"library_id\",jsonResponse.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 17\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add book to library",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"   pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books",
+								"{{book_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "add book to library success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "329"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"149-3NvQYh3WYYlKiRGGmDr66+4KV5M\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:18:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"da3e76d4-15d6-45fb-a23c-4a6ecff027a6\",\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 17,\n    \"books\": [\n        {\n            \"id\": \"034a0448-a02e-498d-8f21-90cdd0cbc662\",\n            \"title\": \"La fraja amarilla\",\n            \"author\": \"William Ospina\",\n            \"publication_date\": \"1997-05-01\",\n            \"isbn\": \"9585820749\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "add book to library error 404",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-e+H+g2RYQOFmQzHgVe8RirYshDw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:19:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given id was not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "find book from library",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"   pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books",
+								"{{book_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "find book from library error 404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-e+H+g2RYQOFmQzHgVe8RirYshDw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:19:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given id was not found\"\n}"
+						},
+						{
+							"name": "find book from library success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "151"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"97-C3Hzri87UcA2RMuekPF8Vk5kfp8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:21:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"bc2c7998-e04a-42f9-bfb8-ad40c2dd3691\",\n    \"title\": \"La fraja amarilla\",\n    \"author\": \"William Ospina\",\n    \"publication_date\": \"1997-05-01\",\n    \"isbn\": \"9585820749\"\n}"
+						},
+						{
+							"name": "find book from library error 412",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "90"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5a-oneOhFdbty9m+4WdyO+QGz2UZwM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:22:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The book with the given id is not associated to the library\"\n}"
+						}
+					]
+				},
+				{
+					"name": "find books from library",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Number of books in library > ' + 0, function () {",
+									"   var data = pm.response.json()",
+									"   pm.expect(data.length).to.greaterThan(0)",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"   pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "find books from library error 404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-e+H+g2RYQOFmQzHgVe8RirYshDw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:19:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given id was not found\"\n}"
+						},
+						{
+							"name": "find books from library success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "153"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"99-zNzAVnr9GOoHn8lsl/3yVfEIZfs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:21:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"bc2c7998-e04a-42f9-bfb8-ad40c2dd3691\",\n        \"title\": \"La fraja amarilla\",\n        \"author\": \"William Ospina\",\n        \"publication_date\": \"1997-05-01\",\n        \"isbn\": \"9585820749\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "update books from library",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"   pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": \"{{book_id}}\",\n        \"title\": \"La fraja amarilla version 2\",\n        \"author\": \"William Ospina Buitrago\",\n        \"publication_date\": \"1997-05-01\",\n        \"isbn\": \"9585820749\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update books from library error 404",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    {\n        \"id\": \"{{book_id}}\",\n        \"title\": \"La fraja amarilla version 2\",\n        \"author\": \"William Ospina Buitrago\",\n        \"publication_date\": \"1997-05-01\",\n        \"isbn\": \"9585820749\"\n    }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-e+H+g2RYQOFmQzHgVe8RirYshDw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:20:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given id was not found\"\n}"
+						},
+						{
+							"name": "update books from library success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    {\n        \"id\": \"{{book_id}}\",\n        \"title\": \"La fraja amarilla version 2\",\n        \"author\": \"William Ospina Buitrago\",\n        \"publication_date\": \"1997-05-01\",\n        \"isbn\": \"9585820749\"\n    }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "348"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15c-qsKIUPlepc4Px4apwFXfaV9Nq3E\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:21:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"d182e389-3062-42eb-bf35-296318412cc2\",\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 17,\n    \"books\": [\n        {\n            \"id\": \"bc2c7998-e04a-42f9-bfb8-ad40c2dd3691\",\n            \"title\": \"La fraja amarilla version 2\",\n            \"author\": \"William Ospina Buitrago\",\n            \"publication_date\": \"1997-05-01\",\n            \"isbn\": \"9585820749\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "delete book from library",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"   pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books",
+								"{{book_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete book from library error 404",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-e+H+g2RYQOFmQzHgVe8RirYshDw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:20:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given id was not found\"\n}"
+						},
+						{
+							"name": "delete book from library success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:21:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "delete book from library error 412",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}",
+										"books",
+										"{{book_id}}"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "90"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5a-oneOhFdbty9m+4WdyO+QGz2UZwM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:22:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The book with the given id is not associated to the library\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "add book to library",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"libraries",
+						"{{library_id}}",
+						"books",
+						"{{book_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add book to library success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books",
+								"{{book_id}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "329"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"149-3NvQYh3WYYlKiRGGmDr66+4KV5M\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:18:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"da3e76d4-15d6-45fb-a23c-4a6ecff027a6\",\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 17,\n    \"books\": [\n        {\n            \"id\": \"034a0448-a02e-498d-8f21-90cdd0cbc662\",\n            \"title\": \"La fraja amarilla\",\n            \"author\": \"William Ospina\",\n            \"publication_date\": \"1997-05-01\",\n            \"isbn\": \"9585820749\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "add book to library error 404",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books",
+								"{{book_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "74"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4a-e+H+g2RYQOFmQzHgVe8RirYshDw\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:19:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "find book from library",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"libraries",
+						"{{library_id}}",
+						"books",
+						"{{book_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "find book from library error 404",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books",
+								"{{book_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "74"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4a-e+H+g2RYQOFmQzHgVe8RirYshDw\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:19:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given id was not found\"\n}"
+				},
+				{
+					"name": "find book from library success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books",
+								"{{book_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "151"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"97-C3Hzri87UcA2RMuekPF8Vk5kfp8\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:21:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"bc2c7998-e04a-42f9-bfb8-ad40c2dd3691\",\n    \"title\": \"La fraja amarilla\",\n    \"author\": \"William Ospina\",\n    \"publication_date\": \"1997-05-01\",\n    \"isbn\": \"9585820749\"\n}"
+				},
+				{
+					"name": "find book from library error 412",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books",
+								"{{book_id}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "90"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5a-oneOhFdbty9m+4WdyO+QGz2UZwM\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:22:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The book with the given id is not associated to the library\"\n}"
+				}
+			]
+		},
+		{
+			"name": "find books from library",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{HOST}}/libraries/{{library_id}}/books",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"libraries",
+						"{{library_id}}",
+						"books"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "find books from library error 404",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "74"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4a-e+H+g2RYQOFmQzHgVe8RirYshDw\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:19:46 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given id was not found\"\n}"
+				},
+				{
+					"name": "find books from library success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "153"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"99-zNzAVnr9GOoHn8lsl/3yVfEIZfs\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:21:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"bc2c7998-e04a-42f9-bfb8-ad40c2dd3691\",\n        \"title\": \"La fraja amarilla\",\n        \"author\": \"William Ospina\",\n        \"publication_date\": \"1997-05-01\",\n        \"isbn\": \"9585820749\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "update books from library",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"id\": \"{{book_id}}\",\n        \"title\": \"La fraja amarilla version 2\",\n        \"author\": \"William Ospina Buitrago\",\n        \"publication_date\": \"1997-05-01\",\n        \"isbn\": \"9585820749\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{HOST}}/libraries/{{library_id}}/books",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"libraries",
+						"{{library_id}}",
+						"books"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "update books from library error 404",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": \"{{book_id}}\",\n        \"title\": \"La fraja amarilla version 2\",\n        \"author\": \"William Ospina Buitrago\",\n        \"publication_date\": \"1997-05-01\",\n        \"isbn\": \"9585820749\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "74"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4a-e+H+g2RYQOFmQzHgVe8RirYshDw\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:20:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given id was not found\"\n}"
+				},
+				{
+					"name": "update books from library success",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": \"{{book_id}}\",\n        \"title\": \"La fraja amarilla version 2\",\n        \"author\": \"William Ospina Buitrago\",\n        \"publication_date\": \"1997-05-01\",\n        \"isbn\": \"9585820749\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "348"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"15c-qsKIUPlepc4Px4apwFXfaV9Nq3E\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:21:35 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"d182e389-3062-42eb-bf35-296318412cc2\",\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 17,\n    \"books\": [\n        {\n            \"id\": \"bc2c7998-e04a-42f9-bfb8-ad40c2dd3691\",\n            \"title\": \"La fraja amarilla version 2\",\n            \"author\": \"William Ospina Buitrago\",\n            \"publication_date\": \"1997-05-01\",\n            \"isbn\": \"9585820749\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "delete book from library",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"libraries",
+						"{{library_id}}",
+						"books",
+						"{{book_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete book from library error 404",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books",
+								"{{book_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "74"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4a-e+H+g2RYQOFmQzHgVe8RirYshDw\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:20:07 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given id was not found\"\n}"
+				},
+				{
+					"name": "delete book from library success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books",
+								"{{book_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:21:43 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "delete book from library error 412",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}/books/{{book_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}",
+								"books",
+								"{{book_id}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "90"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5a-oneOhFdbty9m+4WdyO+QGz2UZwM\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:22:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The book with the given id is not associated to the library\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "HOST",
+			"value": "localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "book_id",
+			"value": "e8694e0e-c419-401b-993c-139836500418",
+			"type": "string"
+		},
+		{
+			"key": "library_id",
+			"value": "e8694e0e-c419-401b-993c-139836500418",
+			"type": "string"
+		}
+	]
+}

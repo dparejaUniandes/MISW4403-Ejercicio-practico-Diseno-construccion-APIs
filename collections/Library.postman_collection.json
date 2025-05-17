@@ -1,0 +1,3084 @@
+{
+	"info": {
+		"_postman_id": "814d18f9-88a8-4b2f-ac2f-77ece18565b6",
+		"name": "Library",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15124328"
+	},
+	"item": [
+		{
+			"name": "Casos de error",
+			"item": [
+				{
+					"name": "create library (is not a test)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponse = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"library_id\",jsonResponse.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create library success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "166"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a6-5y4Erk6qsQiwRy8ViAqyi7srhjM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:12:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 2,\n    \"id\": \"8b2c53da-4877-4143-a2de-74c2804f0639\"\n}"
+						},
+						{
+							"name": "create library error 400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "205"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cd-oSipLPjLDa71ijSMNNQJj+U+Ls8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:12:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"message\": [\n        \"The closing time cannot be empty\",\n        \"closing_time must not be greater than 24\",\n        \"closing_time must not be less than 1\",\n        \"The closing time must be a number\"\n    ],\n    \"error\": \"Bad Request\"\n}"
+						},
+						{
+							"name": "create library error 412",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 5,\n    \"closing_time\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "85"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"55-mdFAwYuVbguw58Z/MU8nuCrb01c\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:13:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The opening time cannot be later than the closing time\"\n}"
+						}
+					]
+				},
+				{
+					"name": "create library error 412 when opening date is greater than closing date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 412\", function () {",
+									"   pm.response.to.have.status(412);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The opening time cannot be later than the closing time\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 8,\n    \"closing_time\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create library success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "166"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a6-5y4Erk6qsQiwRy8ViAqyi7srhjM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:12:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 2,\n    \"id\": \"8b2c53da-4877-4143-a2de-74c2804f0639\"\n}"
+						},
+						{
+							"name": "create library error 400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "205"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cd-oSipLPjLDa71ijSMNNQJj+U+Ls8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:12:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"message\": [\n        \"The closing time cannot be empty\",\n        \"closing_time must not be greater than 24\",\n        \"closing_time must not be less than 1\",\n        \"The closing time must be a number\"\n    ],\n    \"error\": \"Bad Request\"\n}"
+						},
+						{
+							"name": "create library error 412",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 5,\n    \"closing_time\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "85"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"55-mdFAwYuVbguw58Z/MU8nuCrb01c\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:13:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The opening time cannot be later than the closing time\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get one library by id error 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The library with the given identifier was not found\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/db9cc00e-e28f-4920-8667-a9b852895c7a",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"db9cc00e-e28f-4920-8667-a9b852895c7a"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get one library by id success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "177"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b1-L3e5BImcsia0Kr9R/3I03jKq5MU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:11:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"66203f93-fbcf-4644-a931-ae717b19892f\",\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 2,\n    \"books\": []\n}"
+						},
+						{
+							"name": "get one library by id error 404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-68OfsGGceyDlM1xXHLgX6/tFcSU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:11:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given identifier was not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update library by id error 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The library with the given identifier was not found\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"opening_time\": 8,\n    \"closing_time\": 14\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/2a76acdf-347d-4e22-8b45-5f80c8759c81",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"2a76acdf-347d-4e22-8b45-5f80c8759c81"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update library by id success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"opening_time\": 8,\n    \"closing_time\": 14\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "167"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a7-6VLKUBootLWHjWziP/UYRdle8Io\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:14:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"2a1d0e15-ca5b-4f9d-8780-b26341232adf\",\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 8,\n    \"closing_time\": 14\n}"
+						},
+						{
+							"name": "update library by id error 404",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"opening_time\": 8,\n    \"closing_time\": 14\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-68OfsGGceyDlM1xXHLgX6/tFcSU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:15:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given identifier was not found\"\n}"
+						},
+						{
+							"name": "update library by id error 412",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"opening_time\": 18,\n    \"closing_time\": 14\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5b-M0SZFUz3ui3AMMS8uYv6dv9dP5w\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:16:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The opening time 18 cannot be later than the closing time 14\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update library by id error 404 error 412 when opening date is greater than closing date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 412\", function () {",
+									"   pm.response.to.have.status(412);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The opening time 18 cannot be later than the closing time 14\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"opening_time\": 18,\n    \"closing_time\": 14\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update library by id success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"opening_time\": 8,\n    \"closing_time\": 14\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "167"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a7-6VLKUBootLWHjWziP/UYRdle8Io\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:14:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"2a1d0e15-ca5b-4f9d-8780-b26341232adf\",\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 8,\n    \"closing_time\": 14\n}"
+						},
+						{
+							"name": "update library by id error 404",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"opening_time\": 8,\n    \"closing_time\": 14\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-68OfsGGceyDlM1xXHLgX6/tFcSU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:15:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given identifier was not found\"\n}"
+						},
+						{
+							"name": "update library by id error 412",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"opening_time\": 18,\n    \"closing_time\": 14\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5b-M0SZFUz3ui3AMMS8uYv6dv9dP5w\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:16:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The opening time 18 cannot be later than the closing time 14\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete one library by id error 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The library with the given identifier was not found\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/278a07af-893b-4e4f-90e4-ab928b5c1a71",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"278a07af-893b-4e4f-90e4-ab928b5c1a71"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete one library by id success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:17:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "delete one library by id error 404",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-68OfsGGceyDlM1xXHLgX6/tFcSU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:17:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given identifier was not found\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Casos de éxito",
+			"item": [
+				{
+					"name": "create library",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponse = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"library_id\",jsonResponse.id);",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"   pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create library success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "166"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a6-5y4Erk6qsQiwRy8ViAqyi7srhjM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:12:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 2,\n    \"id\": \"8b2c53da-4877-4143-a2de-74c2804f0639\"\n}"
+						},
+						{
+							"name": "create library error 400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "205"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cd-oSipLPjLDa71ijSMNNQJj+U+Ls8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:12:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"message\": [\n        \"The closing time cannot be empty\",\n        \"closing_time must not be greater than 24\",\n        \"closing_time must not be less than 1\",\n        \"The closing time must be a number\"\n    ],\n    \"error\": \"Bad Request\"\n}"
+						},
+						{
+							"name": "create library error 412",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 5,\n    \"closing_time\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "85"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"55-mdFAwYuVbguw58Z/MU8nuCrb01c\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:13:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The opening time cannot be later than the closing time\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get all libraries",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Number of libraries > ' + 0, function () {",
+									"   var data = pm.response.json()",
+									"   pm.expect(data.length).to.greaterThan(0)",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"   pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get all libraries success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "179"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b3-R2fiA/faNlp2yo1Veqs0BC2NNUQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:11:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"66203f93-fbcf-4644-a931-ae717b19892f\",\n        \"name\": \"Biblioteca Jorge Roa Martínez\",\n        \"address\": \"Calle 57 Colombia\",\n        \"city\": \"Pereira\",\n        \"opening_time\": 1,\n        \"closing_time\": 2,\n        \"books\": []\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "get one library by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"   pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get one library by id success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "177"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b1-L3e5BImcsia0Kr9R/3I03jKq5MU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:11:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"66203f93-fbcf-4644-a931-ae717b19892f\",\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 2,\n    \"books\": []\n}"
+						},
+						{
+							"name": "get one library by id error 404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-68OfsGGceyDlM1xXHLgX6/tFcSU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:11:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given identifier was not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update library by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"   pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"opening_time\": 8,\n    \"closing_time\": 14\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update library by id success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"opening_time\": 8,\n    \"closing_time\": 14\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "167"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a7-6VLKUBootLWHjWziP/UYRdle8Io\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:14:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"2a1d0e15-ca5b-4f9d-8780-b26341232adf\",\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 8,\n    \"closing_time\": 14\n}"
+						},
+						{
+							"name": "update library by id error 404",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"opening_time\": 8,\n    \"closing_time\": 14\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-68OfsGGceyDlM1xXHLgX6/tFcSU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:15:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given identifier was not found\"\n}"
+						},
+						{
+							"name": "update library by id error 412",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"opening_time\": 18,\n    \"closing_time\": 14\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5b-M0SZFUz3ui3AMMS8uYv6dv9dP5w\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:16:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The opening time 18 cannot be later than the closing time 14\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete one library by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"   pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete one library by id success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:17:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "delete one library by id error 404",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{HOST}}/libraries/{{library_id}}",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"libraries",
+										"{{library_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-68OfsGGceyDlM1xXHLgX6/tFcSU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 00:17:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given identifier was not found\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "create library",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonResponse = pm.response.json();",
+							"",
+							"pm.collectionVariables.set(\"library_id\",jsonResponse.id);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{HOST}}/libraries",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"libraries"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create library success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "166"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a6-5y4Erk6qsQiwRy8ViAqyi7srhjM\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:12:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 2,\n    \"id\": \"8b2c53da-4877-4143-a2de-74c2804f0639\"\n}"
+				},
+				{
+					"name": "create library error 400",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "205"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"cd-oSipLPjLDa71ijSMNNQJj+U+Ls8\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:12:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 400,\n    \"message\": [\n        \"The closing time cannot be empty\",\n        \"closing_time must not be greater than 24\",\n        \"closing_time must not be less than 1\",\n        \"The closing time must be a number\"\n    ],\n    \"error\": \"Bad Request\"\n}"
+				},
+				{
+					"name": "create library error 412",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 5,\n    \"closing_time\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "85"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"55-mdFAwYuVbguw58Z/MU8nuCrb01c\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:13:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The opening time cannot be later than the closing time\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get all libraries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{HOST}}/libraries",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"libraries"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get all libraries success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "179"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b3-R2fiA/faNlp2yo1Veqs0BC2NNUQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:11:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"66203f93-fbcf-4644-a931-ae717b19892f\",\n        \"name\": \"Biblioteca Jorge Roa Martínez\",\n        \"address\": \"Calle 57 Colombia\",\n        \"city\": \"Pereira\",\n        \"opening_time\": 1,\n        \"closing_time\": 2,\n        \"books\": []\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "get one library by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{HOST}}/libraries/{{library_id}}",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"libraries",
+						"{{library_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get one library by id success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "177"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b1-L3e5BImcsia0Kr9R/3I03jKq5MU\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:11:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"66203f93-fbcf-4644-a931-ae717b19892f\",\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 1,\n    \"closing_time\": 2,\n    \"books\": []\n}"
+				},
+				{
+					"name": "get one library by id error 404",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "82"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"52-68OfsGGceyDlM1xXHLgX6/tFcSU\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:11:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given identifier was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "update library by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"opening_time\": 8,\n    \"closing_time\": 14\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{HOST}}/libraries/{{library_id}}",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"libraries",
+						"{{library_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "update library by id success",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"opening_time\": 8,\n    \"closing_time\": 14\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "167"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a7-6VLKUBootLWHjWziP/UYRdle8Io\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:14:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"2a1d0e15-ca5b-4f9d-8780-b26341232adf\",\n    \"name\": \"Biblioteca Jorge Roa Martínez\",\n    \"address\": \"Calle 57 Colombia\",\n    \"city\": \"Pereira\",\n    \"opening_time\": 8,\n    \"closing_time\": 14\n}"
+				},
+				{
+					"name": "update library by id error 404",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"opening_time\": 8,\n    \"closing_time\": 14\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "82"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"52-68OfsGGceyDlM1xXHLgX6/tFcSU\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:15:43 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given identifier was not found\"\n}"
+				},
+				{
+					"name": "update library by id error 412",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"opening_time\": 18,\n    \"closing_time\": 14\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "91"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5b-M0SZFUz3ui3AMMS8uYv6dv9dP5w\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:16:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The opening time 18 cannot be later than the closing time 14\"\n}"
+				}
+			]
+		},
+		{
+			"name": "delete one library by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{HOST}}/libraries/{{library_id}}",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"libraries",
+						"{{library_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete one library by id success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:17:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "delete one library by id error 404",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOST}}/libraries/{{library_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"libraries",
+								"{{library_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "82"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"52-68OfsGGceyDlM1xXHLgX6/tFcSU\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 May 2025 00:17:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The library with the given identifier was not found\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "HOST",
+			"value": "localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "library_id",
+			"value": "e8694e0e-c419-401b-993c-139836500418",
+			"type": "string"
+		}
+	]
+}
