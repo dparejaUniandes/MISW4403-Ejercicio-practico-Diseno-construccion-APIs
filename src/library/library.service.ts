@@ -25,14 +25,14 @@ export class LibraryService {
 
     async create(library: LibraryEntity): Promise<LibraryEntity> {
         if (library.opening_time >= library.closing_time)
-            throw new BusinessLogicException("The opening time cannot be later than the closing time", BusinessError.BAD_REQUEST);
+            throw new BusinessLogicException("The opening time cannot be later than the closing time", BusinessError.PRECONDITION_FAILED);
         return await this.libraryRepository.save(library);
     }
 
     async update(id: string, library: LibraryEntity): Promise<LibraryEntity> {
         const persistedLibrary: LibraryEntity = await this.libraryRepository.findOne({where:{id}});
         if (!persistedLibrary)
-            throw new BusinessLogicException("The library with the given identifier was not found", BusinessError.PRECONDITION_FAILED);
+            throw new BusinessLogicException("The library with the given identifier was not found", BusinessError.NOT_FOUND);
 
         if (!(library.opening_time && library.closing_time && library.opening_time < library.closing_time)){
             if (library.opening_time && library.closing_time && library.opening_time >= library.closing_time)
