@@ -519,7 +519,7 @@ o
 
 ## Base de datos
 
-La base de datos utilizada cuando se ejecuta la aplicación es post, a continuación se puede ver las tablas que se crearon, la base de datos creado se llama gestion_bibliotecas:
+La base de datos utilizada cuando se ejecuta la aplicación es post, a continuación se puede ver las tablas que se crearon, la base de datos creado se llama gestion_bibliotecas, se debe crear la base de datos `gestion_bibliotecas`:
 
 <img width="1026" alt="image" src="https://github.com/user-attachments/assets/1019f0bc-5bd8-4c67-8e9c-82053272c8bf" />
 
