@@ -94,6 +94,22 @@ describe('LibraryService', () => {
     await expect(() => service.create(library)).rejects.toHaveProperty("message", "The opening time cannot be later than the closing time")
   });
 
+  it('create should throw an exception for an invalid library when opening_time is greater than persisted closing_time', async () => {
+    let library: LibraryEntity = librariesList[0];
+    library = {
+      ...library, opening_time: 18
+    }
+    await expect(() => service.create(library)).rejects.toHaveProperty("message", "The opening time cannot be later than the closing time")
+  });
+
+  it('create should throw an exception for an invalid library when persisted opening_time is greater than closing_time', async () => {
+    let library: LibraryEntity = librariesList[0];
+    library = {
+      ...library, closing_time: 7
+    }
+    await expect(() => service.create(library)).rejects.toHaveProperty("message", "The opening time cannot be later than the closing time")
+  });
+
   it('update should modify a library', async () => {
     const library: LibraryEntity = librariesList[0];
     library.name = "New name";
@@ -120,6 +136,22 @@ describe('LibraryService', () => {
       ...library, opening_time: 14, closing_time: 8
     }
     await expect(() => service.update(library.id, library)).rejects.toHaveProperty("message", "The opening time 14 cannot be later than the closing time 8")
+  });
+
+  it('update should throw an exception for an invalid library when opening_time is greater than persisted closing_time', async () => {
+    let library: LibraryEntity = librariesList[0];
+    library = {
+      ...library, opening_time: 18
+    }
+    await expect(() => service.update(library.id, library)).rejects.toHaveProperty("message", "The opening time 18 cannot be later than the closing time 17")
+  });
+
+  it('update should throw an exception for an invalid library when persisted opening_time is greater than closing_time', async () => {
+    let library: LibraryEntity = librariesList[0];
+    library = {
+      ...library, closing_time: 7
+    }
+    await expect(() => service.update(library.id, library)).rejects.toHaveProperty("message", "The opening time 8 cannot be later than the closing time 7")
   });
 
   it('delete should remove a library', async () => {
