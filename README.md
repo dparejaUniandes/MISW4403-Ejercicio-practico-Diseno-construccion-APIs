@@ -539,8 +539,10 @@ En cada colección de Postman existe una carpeta denominada casos de error, esta
 
 Se realizan los tests unitarios para las colecciones mencionadas en el enunciado, las cuales son biblioteca, libro, la relación entre biblioteca y libro, a continuación se puede ver la ejecución de las pruebas:
 
+### Cobertura de las pruebas
+Podemos observar que para el servicio de biblioteca, libro y la asociación entre biblioteca y libro la cobertura es del 100%, además, en total, se ejecutaron 45 tests y todos pasaron satisfactoriamente. Se utilizó el comando `npm run test:cov`
 <br>
-
+<img width="811" alt="image" src="https://github.com/user-attachments/assets/2b07fe83-a51b-4c21-bbc8-0bfd248c7872" />
 
 <br>
 
