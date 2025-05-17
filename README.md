@@ -9,6 +9,10 @@ La aplicación se ejecuta por medio del siguiente comando:
 La versión de Node utilizada fue la `v20.11.1` como se puede ver en la versión verde a continuación:
 <img width="737" alt="image" src="https://github.com/user-attachments/assets/97f2461d-a989-4897-98e5-fb4479b5023b" />
 
+<br>
+
+Para ejecutar los tests de la aplicación se puede utilizar el comando:
+> npm run test:watch
 
 # Documentación de la API
 
