@@ -544,3 +544,42 @@ Se realizan los tests unitarios para las colecciones mencionadas en el enunciado
 
 Se realizan todos los casos planteados para probar en el enunciado, además, se crean nuevos casos en el caso de qué una fecha de publicación sea incorrecta para un libro o que para una biblioteca la fecha de cierre sea menor a la fecha de apertura:
 
+En los casos de error, las peticiones que tienen **(is not a test)** son peticiones de soporte, necesarias para probar otros tests, pero como tal, no realizan pruebas. En la carpeta de casos de éxito están todas las peticiones que se ejecutan satisfactoriamente. Por fuera de estas carpetas están las peticiones sin tests que se pueden utilizar para invocar el API.
+
+### Definición de tests para Libro
+
+<img width="488" alt="image" src="https://github.com/user-attachments/assets/71591909-8155-4ff5-8487-d892285b8ecd" />
+
+
+### Resultados de la ejecución de tests para Libro éxito
+
+<img width="1196" alt="image" src="https://github.com/user-attachments/assets/04ebc421-7ed4-48ba-8ac5-bed8208e830e" />
+
+
+### Resultados de la ejecución de tests para Libro error
+
+<img width="1198" alt="image" src="https://github.com/user-attachments/assets/2f52d336-4eed-45e7-82e4-0624f3e9c6fc" />
+
+
+### Definición de tests para Biblioteca
+<img width="573" alt="image" src="https://github.com/user-attachments/assets/e75ba596-ab23-4529-87d6-45c100a1e5d3" />
+
+
+### Resultados de la ejecución de tests para Biblioteca éxito
+<img width="1184" alt="image" src="https://github.com/user-attachments/assets/3f923bbe-c53b-4872-83e4-4377d59445de" />
+
+
+### Resultados de la ejecución de tests para Biblioteca error
+<img width="1162" alt="image" src="https://github.com/user-attachments/assets/b18c333a-fc87-4de1-9642-b7147c7af34d" />
+
+
+### Definición de tests para Biblioteca-Libro
+<img width="491" alt="image" src="https://github.com/user-attachments/assets/d588d950-4e4c-4c7c-aeb6-d1fb10956b0a" />
+
+
+### Resultados de la ejecución de tests para Biblioteca-Libro éxito
+<img width="1199" alt="image" src="https://github.com/user-attachments/assets/97c2d8d9-6c78-463e-ad5e-e6fd571cdd5d" />
+
+
+### Resultados de la ejecución de tests para Biblioteca-Libro error
+<img width="1185" alt="image" src="https://github.com/user-attachments/assets/652f56cf-83f5-4bec-ae38-63b878ff6c87" />
