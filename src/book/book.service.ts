@@ -34,6 +34,15 @@ export class BookService {
     }
 
     async update(id: string, book: BookEntity): Promise<BookEntity> {
+        if (book.publication_date) {
+            if (!this.isValidDate(book.publication_date))
+                throw new BusinessLogicException("The publication date is not in the YYYY-MM-DD format", BusinessError.BAD_REQUEST);
+            const currentDate = new Date();
+            const formattedDate = currentDate.toISOString().slice(0, 10);
+            if (formattedDate < book.publication_date)
+                throw new BusinessLogicException("The publication date is greater than the current date", BusinessError.PRECONDITION_FAILED);
+        }
+
         const persistedBook: BookEntity = await this.bookRepository.findOne({where:{id}});
         if (!persistedBook)
             throw new BusinessLogicException("The book with the given identifier was not found", BusinessError.NOT_FOUND);
