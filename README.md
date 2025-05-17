@@ -512,3 +512,74 @@ o
     "message": "The book with the given id is not associated to the library"
 }
 ``` 
+
+## Base de datos
+
+La base de datos utilizada cuando se ejecuta la aplicación es post, a continuación se puede ver las tablas que se crearon, la base de datos creado se llama gestion_bibliotecas:
+
+<img width="1026" alt="image" src="https://github.com/user-attachments/assets/1019f0bc-5bd8-4c67-8e9c-82053272c8bf" />
+
+<br>
+
+## Emplos en colecciones postman
+
+En cada colección de Postman existe una carpeta denominada casos de error, esta carpeta se creó con el fin de probar los casos de error de cada en Point, por fuera de esta carpeta se encuentran las peticiones con los casos de éxito, sin embargo, cada petición tiene los ejemplos ya sea de éxito o de error, como se puede ver a continuación para la colección de biblioteca:
+
+<br>
+
+<img width="295" alt="image" src="https://github.com/user-attachments/assets/7ed6284a-e484-441d-ae0f-aebb32535940" />
+
+<br>
+
+## Ejecución de tests unitarios
+
+Se realizan los tests unitarios para las colecciones mencionadas en el enunciado, las cuales son biblioteca, libro, la relación entre biblioteca y libro, a continuación se puede ver la ejecución de las pruebas:
+
+<br>
+
+
+<br>
+
+## ejecución de las pruebas en Postman
+
+Se realizan todos los casos planteados para probar en el enunciado, además, se crean nuevos casos en el caso de qué una fecha de publicación sea incorrecta para un libro o que para una biblioteca la fecha de cierre sea menor a la fecha de apertura:
+
+En los casos de error, las peticiones que tienen **(is not a test)** son peticiones de soporte, necesarias para probar otros tests, pero como tal, no realizan pruebas. En la carpeta de casos de éxito están todas las peticiones que se ejecutan satisfactoriamente. Por fuera de estas carpetas están las peticiones sin tests que se pueden utilizar para invocar el API.
+
+### Definición de tests para Libro
+
+<img width="488" alt="image" src="https://github.com/user-attachments/assets/71591909-8155-4ff5-8487-d892285b8ecd" />
+
+
+### Resultados de la ejecución de tests para Libro éxito
+
+<img width="1196" alt="image" src="https://github.com/user-attachments/assets/04ebc421-7ed4-48ba-8ac5-bed8208e830e" />
+
+
+### Resultados de la ejecución de tests para Libro error
+
+<img width="1198" alt="image" src="https://github.com/user-attachments/assets/2f52d336-4eed-45e7-82e4-0624f3e9c6fc" />
+
+
+### Definición de tests para Biblioteca
+<img width="573" alt="image" src="https://github.com/user-attachments/assets/e75ba596-ab23-4529-87d6-45c100a1e5d3" />
+
+
+### Resultados de la ejecución de tests para Biblioteca éxito
+<img width="1184" alt="image" src="https://github.com/user-attachments/assets/3f923bbe-c53b-4872-83e4-4377d59445de" />
+
+
+### Resultados de la ejecución de tests para Biblioteca error
+<img width="1162" alt="image" src="https://github.com/user-attachments/assets/b18c333a-fc87-4de1-9642-b7147c7af34d" />
+
+
+### Definición de tests para Biblioteca-Libro
+<img width="491" alt="image" src="https://github.com/user-attachments/assets/d588d950-4e4c-4c7c-aeb6-d1fb10956b0a" />
+
+
+### Resultados de la ejecución de tests para Biblioteca-Libro éxito
+<img width="1199" alt="image" src="https://github.com/user-attachments/assets/97c2d8d9-6c78-463e-ad5e-e6fd571cdd5d" />
+
+
+### Resultados de la ejecución de tests para Biblioteca-Libro error
+<img width="1185" alt="image" src="https://github.com/user-attachments/assets/652f56cf-83f5-4bec-ae38-63b878ff6c87" />
