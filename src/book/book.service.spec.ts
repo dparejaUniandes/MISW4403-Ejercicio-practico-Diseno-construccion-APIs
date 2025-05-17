@@ -130,6 +130,12 @@ describe('BookService', () => {
     await expect(() => service.update("0", book)).rejects.toHaveProperty("message", "The book with the given identifier was not found");
   });
 
+  it('update should throw an exception for invalid date format', async () => {
+    const book: BookEntity = booksList[0];
+    book.publication_date = "15/08/2023"; // Invalid format
+    await expect(() => service.update(book.id, book)).rejects.toHaveProperty("message", "The publication date is not in the YYYY-MM-DD format");
+  });
+
   it('update should throw an exception for future publication date', async () => {
     const book: BookEntity = booksList[0];
     const futureDate = new Date();
