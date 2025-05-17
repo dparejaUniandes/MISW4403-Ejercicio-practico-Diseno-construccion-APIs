@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { LibraryEntity } from '../library/library.entity';
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class BookEntity {
