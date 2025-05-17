@@ -141,7 +141,7 @@ describe('LibraryService', () => {
   it('update should throw an exception for an invalid library when opening_time is greater than persisted closing_time', async () => {
     let library: LibraryEntity = librariesList[0];
     library = {
-      ...library, opening_time: 18
+      ...library, opening_time: 18, closing_time: undefined
     }
     await expect(() => service.update(library.id, library)).rejects.toHaveProperty("message", "The opening time 18 cannot be later than the closing time 17")
   });
@@ -149,7 +149,7 @@ describe('LibraryService', () => {
   it('update should throw an exception for an invalid library when persisted opening_time is greater than closing_time', async () => {
     let library: LibraryEntity = librariesList[0];
     library = {
-      ...library, closing_time: 7
+      ...library, closing_time: 7, opening_time: undefined
     }
     await expect(() => service.update(library.id, library)).rejects.toHaveProperty("message", "The opening time 8 cannot be later than the closing time 7")
   });
