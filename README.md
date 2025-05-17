@@ -512,3 +512,35 @@ o
     "message": "The book with the given id is not associated to the library"
 }
 ``` 
+
+## Base de datos
+
+La base de datos utilizada cuando se ejecuta la aplicación es post, a continuación se puede ver las tablas que se crearon, la base de datos creado se llama gestion_bibliotecas:
+
+<img width="1026" alt="image" src="https://github.com/user-attachments/assets/1019f0bc-5bd8-4c67-8e9c-82053272c8bf" />
+
+<br>
+
+## Emplos en colecciones postman
+
+En cada colección de Postman existe una carpeta denominada casos de error, esta carpeta se creó con el fin de probar los casos de error de cada en Point, por fuera de esta carpeta se encuentran las peticiones con los casos de éxito, sin embargo, cada petición tiene los ejemplos ya sea de éxito o de error, como se puede ver a continuación para la colección de biblioteca:
+
+<br>
+
+<img width="295" alt="image" src="https://github.com/user-attachments/assets/7ed6284a-e484-441d-ae0f-aebb32535940" />
+
+<br>
+
+## Ejecución de tests unitarios
+
+Se realizan los tests unitarios para las colecciones mencionadas en el enunciado, las cuales son biblioteca, libro, la relación entre biblioteca y libro, a continuación se puede ver la ejecución de las pruebas:
+
+<br>
+
+
+<br>
+
+## ejecución de las pruebas en Postman
+
+Se realizan todos los casos planteados para probar en el enunciado, además, se crean nuevos casos en el caso de qué una fecha de publicación sea incorrecta para un libro o que para una biblioteca la fecha de cierre sea menor a la fecha de apertura:
+
